@@ -46,7 +46,7 @@ jsPsych.plugins["affect-grid"] = (function () {
       if (trial.button_html.length == trial.choices.length) {
         buttons = trial.button_html;
       } else {
-        console.error('Error in html-button-response plugin. The length of the button_html array does not equal the length of the choices array');
+        console.error('Error in affect grid plugin. The length of the button_html array does not equal the length of the choices array');
       }
     } else {
       for (var i = 0; i < trial.choices.length; i++) {
@@ -56,7 +56,7 @@ jsPsych.plugins["affect-grid"] = (function () {
     html += '<div id="jspsych-html-button-response-btngroup">';
     for (var i = 0; i < trial.choices.length; i++) {
       var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-      html += '<div class="jspsych-html-button-response-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-html-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
+      html += '<div class="jspsych-affect-grid-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-affect-grid-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
     }
     html += '</div>';
 
@@ -72,7 +72,7 @@ jsPsych.plugins["affect-grid"] = (function () {
 
     // add event listeners to buttons
     for (var i = 0; i < trial.choices.length; i++) {
-      display_element.querySelector('#jspsych-html-button-response-button-' + i).addEventListener('click', function (e) {
+      display_element.querySelector('#jspsych-affect-grid-button-' + i).addEventListener('click', function (e) {
         var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
         after_response(choice);
       });
@@ -98,7 +98,7 @@ jsPsych.plugins["affect-grid"] = (function () {
       display_element.querySelector('#jspsych-html-button-response-stimulus').className += ' responded';
 
       // disable all the buttons after a response
-      var btns = document.querySelectorAll('.jspsych-html-button-response-button button');
+      var btns = document.querySelectorAll('.jspsych-affect-grid-button button');
       for (var i = 0; i < btns.length; i++) {
         //btns[i].removeEventListener('click');
         btns[i].setAttribute('disabled', 'disabled');
