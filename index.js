@@ -22,3 +22,13 @@ app.post('/api', (request, response) => {
     database.insert(data);
     response.json(data);
 });
+
+// Define the GET operation
+app.get('/api', (request, response) => {
+    database.find({}, (err, data) => {
+        if(err) {
+            response.end();
+        }
+        response.json(data);
+    })
+})
