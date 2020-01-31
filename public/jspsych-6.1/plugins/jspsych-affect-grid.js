@@ -42,6 +42,7 @@ jsPsych.plugins["affect-grid"] = (function () {
     var html = '<div id="jspsych-html-button-response-stimulus">' + trial.stimulus + '</div>';
 
     var buttons = [];
+    /*
     if (Array.isArray(trial.button_html)) {
       if (trial.button_html.length == trial.choices.length) {
         buttons = trial.button_html;
@@ -58,7 +59,22 @@ jsPsych.plugins["affect-grid"] = (function () {
       var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
       html += '<div class="jspsych-affect-grid-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-affect-grid-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
     }
-    html += '</div>';
+    html += '</div>'; */
+
+    html += '<div class="grid-container" id="grid">';
+
+    let i = 0;
+    let grid = document.getElementById("grid");
+  
+    for (i; i <= 80; i++) {
+      let button = document.createElement("button");
+      button.classList.add("grid-item-btn");
+      button.id = i;
+      button.addEventListener("click", btnClicked);
+      grid.appendChild(button);
+    }
+
+    html += '</div>'
 
     //show prompt if there is one
     if (trial.prompt !== null) {
@@ -83,6 +99,27 @@ jsPsych.plugins["affect-grid"] = (function () {
       rt: null,
       button: null
     };
+
+    // When the button is clicked
+    function btnClicked(e) {
+      if (prevBtn) {
+        prevBtn.classList.remove("grid-item-btn-active");
+      }
+      e.target.classList.add("grid-item-btn-active");
+      prevBtn = e.target;
+      currChoice = e.target.id;
+    }
+  
+    // To handle the submit-action
+    function submit(e) {
+      if (currChoice != null) {
+        let data = {
+          x: currChoice % 9,
+          y: Math.floor(currChoice / 9)
+        };
+        rt = data;
+      }
+    }
 
     // function to handle ***REMOVED*** by the subject
     function after_response(choice) {
