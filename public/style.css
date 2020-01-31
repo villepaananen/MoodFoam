@@ -11,7 +11,7 @@
      background-color: transparent;
      border: 1px solid black;
      border-radius: 0;
-     width: 50px;
+     width: 50px; /* % of the screen? */
      height: 50px;
  }
  .jspsych-affect-grid-button .jspsych-btn:hover {
