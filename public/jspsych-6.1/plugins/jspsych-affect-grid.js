@@ -87,7 +87,7 @@ jsPsych.plugins["affect-grid"] = (function () {
     var start_time = performance.now();
 
     // add event listeners to buttons
-    for (var i = 0; i < trial.choices.length; i++) {
+    for (i = 0; i < trial.choices.length; i++) {
       display_element.querySelector('#jspsych-affect-grid-button-' + i).addEventListener('click', function (e) {
         var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
         after_response(choice);
