@@ -28,11 +28,11 @@ jsPsych.plugins["affect-grid"] = (function () {
         default: null,
         description: 'Any content here will be displayed under the button.'
       },
-      response_ends_trial: {
-        type: jsPsych.plugins.parameterType.BOOL,
-        pretty_name: 'Response ends trial',
-        default: true,
-        description: 'If true, then trial will end when user responds.'
+      button_label: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Button label',
+        default: 'Continue',
+        description: 'Label of the button.'
       }
     }
   }
@@ -41,7 +41,6 @@ jsPsych.plugins["affect-grid"] = (function () {
 
     var html = '<div id="jspsych-html-button-response-stimulus">' + trial.stimulus + '</div>';
 
-    var buttons = [];
     /*
     if (Array.isArray(trial.button_html)) {
       if (trial.button_html.length == trial.choices.length) {
@@ -64,17 +63,15 @@ jsPsych.plugins["affect-grid"] = (function () {
     html += '<div class="grid-container" id="grid">';
 
     let i = 0;
-    let grid = document.getElementById("grid");
-  
+
     for (i; i <= 80; i++) {
-      let button = document.createElement("button");
-      button.classList.add("grid-item-btn");
-      button.id = i;
-      button.addEventListener("click", btnClicked);
-      grid.appendChild(button);
+      button = '<button class="grid-item-btn" id=' + i + '></button>'
+      html += button;
     }
 
     html += '</div>'
+
+    html += '<input type="submit" id="jspsych-affect-next" class="jspsych-affect jspsych-btn" value="' + trial.button_label + '"></input>';
 
     //show prompt if there is one
     if (trial.prompt !== null) {
@@ -86,13 +83,13 @@ jsPsych.plugins["affect-grid"] = (function () {
     // start time
     var start_time = performance.now();
 
-    // add event listeners to buttons
-    for (i = 0; i < trial.choices.length; i++) {
-      display_element.querySelector('#jspsych-affect-grid-button-' + i).addEventListener('click', function (e) {
-        var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
-        after_response(choice);
-      });
-    }
+    let prevBtn = null;
+    let currChoice = null;
+    let buttons = document.querySelectorAll('.grid-item-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', btnClicked(btn));
+    });
+
 
     // store response
     var response = {
@@ -102,14 +99,16 @@ jsPsych.plugins["affect-grid"] = (function () {
 
     // When the button is clicked
     function btnClicked(e) {
+      console.log(e);
       if (prevBtn) {
-        prevBtn.classList.remove("grid-item-btn-active");
+        prevBtn.className = "grid-item-btn";
       }
-      e.target.classList.add("grid-item-btn-active");
-      prevBtn = e.target;
-      currChoice = e.target.id;
+      e.classList.className = "grid-item-btn-active";
+      prevBtn = e;
+      currChoice = e;
+
     }
-  
+
     // To handle the submit-action
     function submit(e) {
       if (currChoice != null) {
@@ -123,7 +122,6 @@ jsPsych.plugins["affect-grid"] = (function () {
 
     // function to handle responses by the subject
     function after_response(choice) {
-
       // measure rt
       var end_time = performance.now();
       var rt = end_time - start_time;
@@ -169,7 +167,3 @@ jsPsych.plugins["affect-grid"] = (function () {
 
   return plugin;
 })();
-
-function numberRange(start, end) {
-  return new Array(end - start + 1).fill().map((d, i) => i + start);
-}
