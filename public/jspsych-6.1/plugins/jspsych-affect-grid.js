@@ -46,10 +46,36 @@ jsPsych.plugins["affect-grid"] = (function() {
     html += '<div class="grid-container" id="grid">';
 
     // add all the buttons to the html
-    let i = 0;
+    /*     let i = 0;
     for (i; i <= 80; i++) {
       button = '<button class="grid-item-btn" id=' + i + "></button>";
       html += button;
+    } */
+
+    var button_html = [];
+    for (i = 0; i <= 80; i++) {
+      button_html[i] = '<button class="grid-item-btn"></button>';
+    }
+
+    button_html[0] =
+      '<button class="grid-item-btn"><span class="label" id="stress">Stress</span></button>';
+    button_html[4] =
+      '<button class="grid-item-btn"><span class="label" id="arousal">High Arousal</span></button>';
+    button_html[8] =
+      '<button class="grid-item-btn"><span class="label" id="excitement">Excitement</span></button>';
+    button_html[36] =
+      '<button class="grid-item-btn"><span class="label" id="unpleasant">Unpleasant Feelings</span></button>';
+    button_html[44] =
+      '<button class="grid-item-btn"><span class="label" id="pleasant">Pleasant Feelings</span></button>';
+    button_html[72] =
+      '<button class="grid-item-btn"><span class="label" id="depression">Depression</span></button>';
+    button_html[76] =
+      '<button class="grid-item-btn"><span class="label" id="sleepiness">Sleepiness</span></button>';
+    button_html[80] =
+      '<button class="grid-item-btn"><span class="label" id="relaxation">Relaxation</span></button>';
+
+    for (i = 0; i <= 80; i++) {
+      html += button_html[i];
     }
 
     html += "</div>";
@@ -66,6 +92,8 @@ jsPsych.plugins["affect-grid"] = (function() {
       '"></input>';
 
     display_element.innerHTML = html;
+
+    // add the labels
 
     // start time
     var start_time = performance.now();
@@ -95,7 +123,7 @@ jsPsych.plugins["affect-grid"] = (function() {
       if (prevBtn) {
         prevBtn.className = "grid-item-btn";
       }
-      e.classList.className = "grid-item-btn-active";
+      e.className = "grid-item-btn-active";
       prevBtn = e;
       currChoice = e;
     }

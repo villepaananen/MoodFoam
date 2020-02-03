@@ -17,8 +17,9 @@ TODO:
 -location uusi kuva
 -location kuvan zoomaus
 -location sisällön varmistus
--affect grid labels ja sublabels
--lähetä data tietokantaan 
+-location 
+-lähetä data tietokantaan
+-responsive
 
 */
 
@@ -195,7 +196,7 @@ timeline.push(test_temperature);
 var test_end = {
   type: "html-button-response",
   stimulus: "Thank you for participating in the study!",
-  choices: []
+  choices: ["Submit"]
 };
 
 timeline.push(test_end);
@@ -212,7 +213,7 @@ jsPsych.init({
       },
       body: JSON.stringify({ data })
     };
-    //jsPsych.data.get().localSave("json", "affect-grid_results.json");
+    jsPsych.data.get().localSave("json", "affect-grid_results.json");
     /*     const response = await fetch('/api', options);
     const json = await response.json(); */
   }
