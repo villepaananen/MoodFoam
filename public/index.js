@@ -205,15 +205,14 @@ jsPsych.init({
   timeline: timeline,
   on_finish: async function() {
     console.log("finish");
-    saveData;
+    saveData();
     //jsPsych.data.get().localSave("json", "affect-grid_results.json");
   }
 });
 
 function saveData() {
-  console.log("saveData");
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "write_data.php"); // change 'write_data.php' to point to php script.
+  xhr.open("POST", "/"); // change 'write_data.php' to point to php script.
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
     if (xhr.status == 200) {
@@ -221,5 +220,6 @@ function saveData() {
       console.log(response.success);
     }
   };
+
   xhr.send(jsPsych.data.get().json());
 }
