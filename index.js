@@ -1,5 +1,6 @@
 const express = require("express");
 const Datastore = require("nedb");
+require("dotenv").config();
 
 const port = process.env.PORT || 3000;
 
