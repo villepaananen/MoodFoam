@@ -205,20 +205,20 @@ jsPsych.init({
   timeline: timeline,
   on_finish: async function() {
     console.log("finish");
-    const data = jsPsych.data.get().json();
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ data })
-    };
-    jsPsych.data.get().localSave("json", "affect-grid_results.json");
-    /*
-
-
-    const response = await fetch('/api', options);
-    const json = await response.json(); 
-    */
+    saveData;
+    //jsPsych.data.get().localSave("json", "affect-grid_results.json");
   }
 });
+
+function saveData() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "write_data.php"); // change 'write_data.php' to point to php script.
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onload = function() {
+    if (xhr.status == 200) {
+      var response = JSON.parse(xhr.responseText);
+      console.log(response.success);
+    }
+  };
+  xhr.send(jsPsych.data.get().json());
+}
