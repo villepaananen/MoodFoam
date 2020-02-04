@@ -214,7 +214,11 @@ jsPsych.init({
       body: JSON.stringify({ data })
     };
     jsPsych.data.get().localSave("json", "affect-grid_results.json");
-    /*     const response = await fetch('/api', options);
-    const json = await response.json(); */
+    /*
+
+
+    const response = await fetch('/api', options);
+    const json = await response.json(); 
+    */
   }
 });
