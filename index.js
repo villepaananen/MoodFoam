@@ -7,22 +7,21 @@ const port = process.env.PORT || 3000;
 const { Client } = require("pg");
 
 const client = new Client({
+  user: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  host: process.env.DATABASE_SERVER_NAME,
+  port: process.env.PORT,
+  database: process.env.DATABASE_NAME,
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
 
-client.connect();
-
-client.query(
-  "SELECT table_schema,table_name FROM information_schema.tables;",
-  (err, res) => {
-    if (err) throw err;
-    for (let row of res.rows) {
-      console.log(JSON.stringify(row));
-    }
-    client.end();
-  }
-);
+client
+  .connect()
+  .then(() => console.log("Connected to db successfully"))
+  .then(() => client.query("select * from ***REMOVED***"))
+  .then(results => console.table(results.rows))
+  .catch(e => console.log);
 
 const app = express();
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
@@ -33,21 +32,25 @@ app.use(
   })
 );
 
-// Create the database
-const database = new Datastore("database.db");
-database.loadDatabase();
+// add a experiment response to the database
+app.post("/", (request, response) => {
+  const data = {
+    data: request.body,
+    timestamp: Date.now()
+  };
 
-// Define the POST operation
-app.post("/api", (request, response) => {
-  const data = request.body;
-  const timestamp = Date.now();
-  data.timestamp = timestamp;
-  database.insert(data);
-  response.json(data);
+  const query = {
+    text: "INSERT INTO ***REMOVED***(response) VALUES($1)",
+    values: [data]
+  };
+
+  console.log(query);
+
+  client.query(query);
 });
 
-// Define the GET operation
-app.get("/api", (request, response) => {
+// return all of the data in the database
+app.get("/", (request, response) => {
   database.find({}, (err, data) => {
     if (err) {
       response.end();
