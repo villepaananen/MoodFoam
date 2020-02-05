@@ -211,8 +211,8 @@ jsPsych.init({
   timeline: timeline,
   on_finish: async function() {
     console.log("finish");
-    //saveData();
-    jsPsych.data.get().localSave("json", "affect-grid_results.json");
+    saveData();
+    //jsPsych.data.get().localSave("json", "affect-grid_results.json");
   }
 });
 
