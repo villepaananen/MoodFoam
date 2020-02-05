@@ -43,7 +43,7 @@ app.post("/", (request, response) => {
   const now = new Date();
 
   const query = {
-    text: "INSERT INTO ***REMOVED***(response) VALUES($1, $2)",
+    text: "INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)",
     values: [data, now]
   };
   (async () => {
@@ -56,8 +56,4 @@ app.post("/", (request, response) => {
       client.release();
     }
   })().catch(e => console.error(e.stack));
-
-  /*   await client.connect()
-  await client.query(query)
-  await client.end() */
 });
