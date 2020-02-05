@@ -20,6 +20,7 @@ TODO:
 -location 
 -lähetä data tietokantaan
 -responsive
+-AFFECT GRID EI ANNA OIKEAA DATAA
 
 */
 
@@ -43,7 +44,7 @@ var test_who = {
   questions: [
     {
       prompt: "Who are you?",
-      name: "Roles",
+      name: "Role",
       options: participant_types,
       required: true
     }
@@ -93,9 +94,10 @@ timeline.push(test_groupsize);
 // Where are you now?
 var test_location = {
   type: "location",
-  stimulus: "./images/tellusmapnew.png",
+  stimulus: "./images/Tellus pohja small.png",
   stimulus_width: 400,
   stimulus_height: 400,
+  stimulus_zoom: 11,
   preamble: "Where are you now?",
   required: true
 };
@@ -117,7 +119,8 @@ var test_space_fit = {
     {
       prompt: "How well does this spot support your current activity?",
       labels: scale_1,
-      required: true
+      required: true,
+      name: "Spot suitability"
     }
   ]
 };
@@ -157,7 +160,8 @@ var test_sound_level = {
     {
       prompt: "The sound level doesn't bother me.",
       labels: scale_2,
-      required: true
+      required: true,
+      name: "Sounds"
     }
   ]
 };
@@ -171,7 +175,8 @@ var test_smells = {
     {
       prompt: "There aren't any distracting smells.",
       labels: scale_2,
-      required: true
+      required: true,
+      name: "Smells"
     }
   ]
 };
@@ -185,7 +190,8 @@ var test_temperature = {
     {
       prompt: "The temperature level is just fine.",
       labels: scale_2,
-      required: true
+      required: true,
+      name: "Temperature"
     }
   ]
 };
@@ -205,8 +211,8 @@ jsPsych.init({
   timeline: timeline,
   on_finish: async function() {
     console.log("finish");
-    saveData();
-    //jsPsych.data.get().localSave("json", "affect-grid_results.json");
+    //saveData();
+    jsPsych.data.get().localSave("json", "affect-grid_results.json");
   }
 });
 

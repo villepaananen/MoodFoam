@@ -54,25 +54,26 @@ jsPsych.plugins["affect-grid"] = (function() {
 
     var button_html = [];
     for (i = 0; i <= 80; i++) {
-      button_html[i] = '<button class="grid-item-btn"></button>';
+      button_html[i] =
+        '<button class="grid-item-btn" value=' + i + "></button>";
     }
 
     button_html[0] =
-      '<button class="grid-item-btn"><span class="label" id="stress">Stress</span></button>';
+      '<button class="grid-item-btn" value="0"><span class="label" id="stress">Stress</span></button>';
     button_html[4] =
-      '<button class="grid-item-btn"><span class="label" id="arousal">High Arousal</span></button>';
+      '<button class="grid-item-btn" value="4"><span class="label" id="arousal">High Arousal</span></button>';
     button_html[8] =
-      '<button class="grid-item-btn"><span class="label" id="excitement">Excitement</span></button>';
+      '<button class="grid-item-btn" value="8"><span class="label" id="excitement">Excitement</span></button>';
     button_html[36] =
-      '<button class="grid-item-btn"><span class="label" id="unpleasant">Unpleasant Feelings</span></button>';
+      '<button class="grid-item-btn" value="36"><span class="label" id="unpleasant">Unpleasant Feelings</span></button>';
     button_html[44] =
-      '<button class="grid-item-btn"><span class="label" id="pleasant">Pleasant Feelings</span></button>';
+      '<button class="grid-item-btn" value="44"><span class="label" id="pleasant">Pleasant Feelings</span></button>';
     button_html[72] =
-      '<button class="grid-item-btn"><span class="label" id="depression">Depression</span></button>';
+      '<button class="grid-item-btn" value="72"><span class="label" id="depression">Depression</span></button>';
     button_html[76] =
-      '<button class="grid-item-btn"><span class="label" id="sleepiness">Sleepiness</span></button>';
+      '<button class="grid-item-btn" value="76"><span class="label" id="sleepiness">Sleepiness</span></button>';
     button_html[80] =
-      '<button class="grid-item-btn"><span class="label" id="relaxation">Relaxation</span></button>';
+      '<button class="grid-item-btn" value="80"><span class="label" id="relaxation">Relaxation</span></button>';
 
     for (i = 0; i <= 80; i++) {
       html += button_html[i];
@@ -132,8 +133,8 @@ jsPsych.plugins["affect-grid"] = (function() {
     function submit() {
       let data = {};
       if (currChoice !== null) {
-        (data.x = currChoice.id % 9), (data.y = Math.floor(currChoice.id / 9));
-        rt = data;
+        (data.x = currChoice.value % 9),
+          (data.y = Math.floor(currChoice.value / 9));
         after_response(data);
       }
     }
