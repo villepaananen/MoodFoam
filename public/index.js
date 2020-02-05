@@ -209,8 +209,7 @@ timeline.push(test_end);
 
 jsPsych.init({
   timeline: timeline,
-  on_finish: async function() {
-    console.log("finish");
+  on_finish: function() {
     saveData();
     //jsPsych.data.get().localSave("json", "affect-grid_results.json");
   }
@@ -226,6 +225,5 @@ function saveData() {
       console.log(response.success);
     }
   };
-
   xhr.send(jsPsych.data.get().json());
 }
