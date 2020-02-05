@@ -1,22 +1,8 @@
+const db = require("./db");
 const express = require("express");
 require("dotenv").config();
 
 const port = process.env.PORT || 3000;
-
-const { Client } = require("pg");
-
-const { Pool } = require("pg");
-
-const pool = new Pool({
-  user: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  host: process.env.DATABASE_SERVER_NAME,
-  port: process.env.PORT,
-  database: process.env.DATABASE_NAME,
-  connectionString: process.env.DATABASE_URL,
-  max: 20,
-  ssl: true
-});
 
 const app = express();
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
@@ -28,7 +14,7 @@ app.use(
 );
 
 // add a experiment response to the database
-app.post("/", (request, response) => {
+app.post("/", (request, response, next) => {
   const data = request.body;
   const now = new Date();
 
@@ -36,14 +22,11 @@ app.post("/", (request, response) => {
     text: "INSERT INTO responses(response, timestamp) VALUES($1, $2)",
     values: [data, now]
   };
-  (async () => {
-    const client = await pool.connect();
-    try {
-      const res = await client.query(query);
-    } catch (e) {
-      throw e;
-    } finally {
-      client.release();
+
+  db.query(query.text, query.values, (err, response) => () {
+    if (err) {
+      return next(err)
     }
-  })().catch(e => console.error(e.stack));
+    res.send(res.rows[0])
+  })
 });
