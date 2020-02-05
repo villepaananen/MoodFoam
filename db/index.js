@@ -12,7 +12,7 @@ const client = new Client({
 
 module.exports = {
   query: (text, params) => {
-    client
+    return client
       .connect()
       .then(() => console.log("Connected to db succesfully"))
       .query(text, params)
