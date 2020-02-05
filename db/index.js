@@ -12,8 +12,9 @@ const client = new Client({
 
 module.exports = {
   query: (text, params) => {
-    client.connect();
     client
+      .connect()
+      .then(() => console.log("Connected to db succesfully"))
       .query(text, params)
       .then(result => console.log(result))
       .catch(e => console.error(e.stack))
