@@ -1,5 +1,4 @@
 const express = require("express");
-const Datastore = require("nedb");
 require("dotenv").config();
 
 const port = process.env.PORT || 3000;
@@ -15,16 +14,7 @@ const pool = new Pool({
   port: process.env.PORT,
   database: process.env.DATABASE_NAME,
   connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
-
-const client = new Client({
-  user: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  host: process.env.DATABASE_SERVER_NAME,
-  port: process.env.PORT,
-  database: process.env.DATABASE_NAME,
-  connectionString: process.env.DATABASE_URL,
+  max: 20,
   ssl: true
 });
 
