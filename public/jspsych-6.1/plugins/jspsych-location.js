@@ -34,6 +34,12 @@ jsPsych.plugins["location"] = (function() {
         default: null,
         description: "Set the image width in pixels"
       },
+      stimulus_zoom: {
+        type: jsPsych.plugins.parameterType.INT,
+        pretty_name: "Image zoom",
+        default: 10,
+        description: "Set the image zoom level"
+      },
       preamble: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: "Preamble",
@@ -80,7 +86,7 @@ jsPsych.plugins["location"] = (function() {
     html += "</form>";
     display_element.innerHTML = html;
 
-    var mymap = L.map("mapid").setView([0.2, -0.2], 10);
+    var mymap = L.map("mapid").setView([0.2, -0.2], trial.stimulus_zoom);
     var imageBounds = [
       [0, 0],
       [trial.stimulus_width / 1000, -trial.stimulus_height / 1000]
