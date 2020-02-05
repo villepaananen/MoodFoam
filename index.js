@@ -14,19 +14,11 @@ app.use(
 );
 
 // add a experiment response to the database
-app.post("/", (request, response, next) => {
-  const data = request.body;
-  const now = new Date();
-
+app.post("/", (request, response) => {
   const query = {
     text: "INSERT INTO responses(response, timestamp) VALUES($1, $2)",
-    values: [data, now]
+    values: [request.body, Date()]
   };
 
-  db.query(query.text, query.values, (err, response) => () {
-    if (err) {
-      return next(err)
-    }
-    res.send(res.rows[0])
-  })
+  db.query(query.text, query.values);
 });
