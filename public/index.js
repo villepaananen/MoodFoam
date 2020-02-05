@@ -218,7 +218,7 @@ jsPsych.init({
 
 function saveData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/"); // change 'write_data.php' to point to php script.
+  xhr.open("POST", "/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
     if (xhr.status == 200) {

@@ -6,7 +6,9 @@ const port = process.env.PORT || 3000;
 
 const { Client } = require("pg");
 
-const client = new Client({
+const { Pool } = require("pg");
+
+const pool = new Pool({
   user: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   host: process.env.DATABASE_SERVER_NAME,
@@ -16,12 +18,15 @@ const client = new Client({
   ssl: true
 });
 
-client
-  .connect()
-  .then(() => console.log("Connected to db successfully"))
-  .then(() => client.query("select * from ***REMOVED***"))
-  .then(results => console.table(results.rows))
-  .catch(e => console.log);
+const client = new Client({
+  user: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  host: process.env.DATABASE_SERVER_NAME,
+  port: process.env.PORT,
+  database: process.env.DATABASE_NAME,
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 const app = express();
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
@@ -34,27 +39,25 @@ app.use(
 
 // add a experiment response to the database
 app.post("/", (request, response) => {
-  const data = {
-    data: request.body,
-    timestamp: Date.now()
-  };
+  const data = request.body;
+  const now = new Date();
 
   const query = {
-    text: "INSERT INTO ***REMOVED***(response) VALUES($1)",
-    values: [data]
+    text: "INSERT INTO ***REMOVED***(response) VALUES($1, $2)",
+    values: [data, now]
   };
-
-  console.log(query);
-
-  client.query(query);
-});
-
-// return all of the data in the database
-app.get("/", (request, response) => {
-  database.find({}, (err, data) => {
-    if (err) {
-      response.end();
+  (async () => {
+    const client = await pool.connect();
+    try {
+      const res = await client.query(query);
+    } catch (e) {
+      throw e;
+    } finally {
+      client.release();
     }
-    response.json(data);
-  });
+  })().catch(e => console.error(e.stack));
+
+  /*   await client.connect()
+  await client.query(query)
+  await client.end() */
 });
