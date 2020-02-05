@@ -15,7 +15,7 @@ module.exports = {
     client.connect();
     client
       .query(text, params)
-      .then(result => console.log(results))
+      .then(result => console.log(result))
       .catch(e => console.error(e.stack))
       .then(() => client.end());
   }
