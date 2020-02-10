@@ -187,7 +187,6 @@ jsPsych.init({
   timeline: timeline,
   on_finish: function() {
     saveData();
-    //jsPsych.data.get().localSave("json", "affect-grid_results.json");
   }
 });
 

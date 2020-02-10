@@ -1,5 +1,5 @@
 /*
- * Example plugin template
+ * Plugin which uses the affect grid by Russell (1980) to measure participants mood
  */
 
 jsPsych.plugins["affect-grid"] = (function() {
