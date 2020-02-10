@@ -1,29 +1,3 @@
-/* 
-1. Selitys kyselyn sisällöstä, tarkoistuksesta jne
-2. Kuka olet?
-3. Kuinka suuressa seureessa olet?
-4. Mitä teet tällä hetkellä?
-5. Missä olet nyt / Karttaan piirtäminen
-6. Kuinka hyvin tila sopii tekemiseesi?
-7. Affect grid
-8. Häiritseekö melutaso?
-9. Häiritseekö tuoksut?
-10. Kiitos osallistumisesta
-11. Palkinnon lunastaminen
-
-TODO:
--require tähti kaikkiin vai ei mihinkään?
--what size is the group, muotoile nätimmin
--location uusi kuva
--location kuvan zoomaus
--location sisällön varmistus
--location 
--lähetä data tietokantaan
--responsive
--AFFECT GRID EI ANNA OIKEAA DATAA
-
-*/
-
 var timeline = [];
 
 // Welcome
@@ -131,7 +105,9 @@ var test_affect_grid = {
   stimulus: "Please rate how you are feeling right now.",
   type: "affect-grid",
   prompt: "Click the mouse in a cell.",
-  choices: new Array(81 - 1 + 1).fill().map((d, i) => i + 1)
+  choices: new Array(81 - 1 + 1).fill().map((d, i) => i + 1),
+  show_labels: true,
+  show_sub_labels: false
 };
 
 timeline.push(test_affect_grid);
