@@ -3,13 +3,6 @@
  * location into the map.
  */
 
-/*
-
-TODO:
--KUVAN KOKO
-
- */
-
 jsPsych.plugins["location"] = (function() {
   var plugin = {};
 
