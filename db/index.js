@@ -15,9 +15,10 @@ module.exports = {
     return client
       .connect()
       .then(() => console.log("Connected to db succesfully"))
-      .query(text, params)
-      .then(result => console.log(result))
-      .catch(e => console.error(e.stack))
-      .then(() => client.end());
+      .catch(e => console.error(e))
+      .query(text, params, (err, res) => {
+        if (err) throw err;
+        console.log(res).end();
+      });
   }
 };
