@@ -10,16 +10,18 @@ const client = new Client({
   ssl: true
 });
 
-module.exports = {
-  query: (text, params) => {
-    return client
-      .connect()
-      .then(() => console.log("Connected to db succesfully"))
-      .catch(e => console.error(e))
-      .query(text, params, (err, res) => {
-        if (err) throw err;
-        console.log(res);
-        client.end();
-      });
+export async function query(text, params) {
+  try {
+    await client.connect();
+    await client.query(text, params);
+    await client.end();
   }
-};
+  catch (error) {
+       console.log(error);
+  }
+}
+
+module.exports = {
+  query(text, params)
+  }
+

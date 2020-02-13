@@ -16,7 +16,7 @@ const client = new Client({
 const port = process.env.PORT || 5500;
 
 const app = express();
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Moodfoam app listening on port ${port}!`));
 app.use(express.static("public"));
 app.use(
   express.json({
