@@ -18,7 +18,8 @@ module.exports = {
       .catch(e => console.error(e))
       .query(text, params, (err, res) => {
         if (err) throw err;
-        console.log(res).end();
+        console.log(res);
+        client.end();
       });
   }
 };
