@@ -54,11 +54,11 @@ jsPsych.plugins["affect-grid"] = (function() {
       trial.stimulus +
       "</div>";
 
-    // make the grid for the buttons
+    // create a 11-by-11 grid. The outermost rows and columns are for the labels
     html += '<div class="grid-container" id="grid">';
 
     var button_html = [];
-    for (i = 0; i <= 80; i++) {
+    for (i = 0; i <= 11 * 11; i++) {
       button_html[i] =
         '<button class="grid-item-btn" value=' + i + "></button>";
     }
