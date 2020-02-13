@@ -20,5 +20,16 @@ app.post("/", async (request, response) => {
     values: [request.body, new Date()]
   };
 
-  db.insert(query.text, query.values);
+  if (IsValidJSONString(request.body)) {
+    db.insert(query.text, query.values);
+  } else console.error(request.body);
 });
+
+function IsValidJSONString(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
