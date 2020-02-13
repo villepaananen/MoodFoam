@@ -22,7 +22,7 @@ app.post("/", async (request, response) => {
 
   if (IsValidJSONString(request.body)) {
     db.insert(query.text, query.values);
-  } else console.error(request.body);
+  } else console.error("Not JSON:", request.body);
 });
 
 function IsValidJSONString(str) {
