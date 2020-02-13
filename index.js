@@ -28,7 +28,7 @@ app.use(
 app.post("/", async (request, response) => {
   const query = {
     text: "INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)",
-    values: [request.body[0], new Date()]
+    values: [request.body, new Date()]
   };
 
   try {
