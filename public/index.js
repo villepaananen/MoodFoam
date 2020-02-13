@@ -191,14 +191,27 @@ jsPsych.init({
 });
 
 function saveData() {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("POST", "/");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
     if (xhr.status == 200) {
-      var response = JSON.parse(xhr.responseText);
+      let response = JSON.parse(xhr.responseText);
       console.log(response.success);
     }
   };
-  xhr.send(jsPsych.data.get().json());
+
+  let response = jsPsych.data.get().json();
+  if (IsValidJSONString(response)) {
+    xhr.send(response);
+  } else console.error("Invalid response: ", response);
+}
+
+function IsValidJSONString(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
