@@ -31,7 +31,7 @@ app.post("/", async (request, response) => {
     values: [request.body, new Date()]
   };
 
-  db.client(query.text, query.values);
+  db.query(query.text, query.values);
 
   /*   await client
     .connect()
