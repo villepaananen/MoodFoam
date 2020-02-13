@@ -2,17 +2,6 @@ const db = require("./db");
 const express = require("express");
 require("dotenv").config();
 
-const { Client } = require("pg");
-const client = new Client({
-  user: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  host: process.env.DATABASE_SERVER_NAME,
-  port: process.env.PORT,
-  database: process.env.DATABASE_NAME,
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
-
 const port = process.env.PORT || 5500;
 
 const app = express();
@@ -31,13 +20,5 @@ app.post("/", async (request, response) => {
     values: [request.body, new Date()]
   };
 
-  db.query(query.text, query.values);
-
-  /*   await client
-    .connect()
-    .then(() => console.log("Connected to db successfully"))
-    .catch(e => console.error(e));
-
-  await client.query(query);
-  await client.end(); */
+  db.insert(query.text, query.values);
 });
