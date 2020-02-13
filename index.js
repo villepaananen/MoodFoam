@@ -31,14 +31,11 @@ app.post("/", async (request, response) => {
     values: [request.body, new Date()]
   };
 
-  try {
-    await client
-      .connect()
-      .then(() => console.log("Connected to db successfully"));
+  await client
+    .connect()
+    .then(() => console.log("Connected to db successfully"))
+    .catch(e => console.error(e));
 
-    const res = await client.query(query);
-    await client.end();
-  } catch (error) {
-    console.error(error);
-  }
+  await client.query(query);
+  await client.end();
 });
