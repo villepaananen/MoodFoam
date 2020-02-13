@@ -10,18 +10,14 @@ const client = new Client({
   ssl: true
 });
 
-export async function query(text, params) {
+async function query(text, params) {
   try {
     await client.connect();
     await client.query(text, params);
     await client.end();
-  }
-  catch (error) {
-       console.log(error);
+  } catch (error) {
+    console.log(error);
   }
 }
 
-module.exports = {
-  query(text, params)
-  }
-
+module.exports.query = query(text, params);
