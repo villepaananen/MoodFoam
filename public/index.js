@@ -213,6 +213,7 @@ function saveData() {
   let response = jsPsych.data.get().json();
   if (IsValidJSONString(response)) {
     xhr.send(response);
+    window.location.replace("/end.html");
   } else console.error("Invalid response: ", response);
 }
 
