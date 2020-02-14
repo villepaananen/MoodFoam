@@ -5,10 +5,10 @@ const client = new Client({
   ssl: true
 });
 
-async function insert(text, params) {
+async function insert(text) {
   try {
     await client.connect();
-    await client.query(text, params);
+    await client.query(text);
     await client.end();
   } catch (error) {
     console.log(error);

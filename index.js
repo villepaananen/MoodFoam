@@ -13,15 +13,13 @@ app.use(
   })
 );
 
-// add a experiment response to the database
+// add the experiment response to the database
 app.post("/", async (request, response) => {
-  const query = {
-    text: "INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)",
-    values: [request.body, new Date()]
-  };
+  const text = "INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)";
+  const values = [JSON.stringify(request.body), new Date()];
 
-  if (IsValidJSONString(request.body)) {
-    db.insert(query.text, query.values);
+  if (IsValidJSONString(JSON.stringify(request.body))) {
+    db.insert(text, values);
   } else console.error("Not JSON:", request.body);
 });
 

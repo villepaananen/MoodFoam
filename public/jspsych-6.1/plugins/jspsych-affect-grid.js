@@ -57,38 +57,35 @@ jsPsych.plugins["affect-grid"] = (function() {
     // create a 11-by-11 grid. The outermost rows and columns are for the labels
     html += '<div class="grid-container" id="grid">';
 
-    var button_html = [];
-    for (i = 0; i <= 11 * 11; i++) {
-      button_html[i] =
-        '<button class="grid-item-btn" value=' + i + "></button>";
-    }
+    // add the labels
 
     if (trial.show_labels) {
-      button_html[4] =
-        '<button class="grid-item-btn" value="4"><span class="label" id="arousal">High Arousal</span></button>';
-      button_html[36] =
-        '<button class="grid-item-btn" value="36"><span class="label" id="unpleasant">Unpleasant Feelings</span></button>';
-      button_html[44] =
-        '<button class="grid-item-btn" value="44"><span class="label" id="pleasant">Pleasant Feelings</span></button>';
-      button_html[76] =
-        '<button class="grid-item-btn" value="76"><span class="label" id="sleepiness">Sleepiness</span></button>';
+      html += '<div class="label" id="arousal">High Arousal</div>';
+      html += '<div class="label" id="unpleasant">Unpleasant Feelings</div>';
+      html += '<div class="label" id="pleasant">Pleasant Feelings</div>';
+      html += '<div class="label" id="sleepiness">Sleepiness</div>';
     }
 
     if (trial.show_sub_labels) {
-      button_html[0] =
-        '<button class="grid-item-btn" value="0"><span class="label" id="stress">Stress</span></button>';
-      button_html[8] =
-        '<button class="grid-item-btn" value="8"><span class="label" id="excitement">Excitement</span></button>';
-      button_html[72] =
-        '<button class="grid-item-btn" value="72"><span class="label" id="depression">Depression</span></button>';
-      button_html[80] =
-        '<button class="grid-item-btn" value="80"><span class="label" id="relaxation">Relaxation</span></button>';
+      html += '<div class="sublabel" id="stress">Stress</div>';
+      html += '<div class="sublabel" id="excitement">Excitement</div>';
+      html += '<div class="sublabel" id="depression">Depression</div>';
+      html += '<div class="sublabel" id="relaxation">Relaxation</div>';
+    }
+
+    html += '<div class="grid-btn-container" id="btn-grid">';
+
+    var button_html = [];
+    for (i = 0; i <= 9 * 9; i++) {
+      button_html[i] =
+        '<button class="grid-item-btn" value=' + i + "></button>";
     }
 
     for (i = 0; i <= 80; i++) {
       html += button_html[i];
     }
 
+    html += "</div>";
     html += "</div>";
 
     //show prompt if there is one
