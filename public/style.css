@@ -1,31 +1,31 @@
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(9, 6vw);
-  grid-template-rows: repeat(9, 6vw);
-  background-color: white;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  justify-content: center;
-  margin-top: 11vw;
-  margin-bottom: 11vw;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  grid-gap: 0px;
+}
+
+.grid-btn-container {
+  display: grid;
+  grid-template-columns: repeat(9, 5vw);
+  grid-template-rows: repeat(9, 5vw);
+  grid-column: 2;
+  grid-row: 2;
+  grid-gap: 0px;
 }
 
 .grid-item-btn {
-  background-color: white;
   border: 1px solid black;
-  padding: 0px;
   width: 100%;
   height: 100%;
-  margin: 0px;
+  background-color: white;
 }
 
 .grid-item-btn-active {
   background-color: black;
   border: 1px solid black;
-  padding: 0px;
   width: 100%;
   height: 100%;
-  margin: 0px;
   outline: none;
 }
 
@@ -51,55 +51,79 @@
   position: relative;
   display: block;
   color: black;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   border: 0;
   font-size: 3vw;
+  line-height: 1.5;
 }
 
-#stress {
-  top: -6vw;
-  left: -11vw;
+.sublabel {
+  position: relative;
+  display: block;
+  color: black;
+  padding: 10px;
+  margin: 0;
+  border: 0;
   font-size: 2vw;
+  line-height: 1.5;
 }
+
+/* labels */
 
 #arousal {
-  top: -6vw;
-  left: -6vw;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
+  align-self: end;
   white-space: nowrap;
 }
 
-#excitement {
-  top: -6vw;
-  left: 8vw;
-  font-size: 2vw;
-}
-
 #unpleasant {
-  left: -17vw;
-  top: -0vw;
+  grid-column: 1;
+  grid-row: 2;
+  text-align: right;
+  margin: auto 0;
 }
 
 #pleasant {
-  left: 7vw;
-  top: 0px;
-}
-
-#depression {
-  top: 6vw;
-  left: -17vw;
-  font-size: 2vw;
+  grid-column: 3;
+  grid-row: 2;
+  text-align: left;
+  margin: auto 0;
 }
 
 #sleepiness {
-  top: 6vw;
-  left: -5vw;
+  grid-column: 2;
+  grid-row: 3;
+  text-align: center;
+}
+
+/* sub-labels */
+
+#stress {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  align-self: end;
+}
+
+#excitement {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: left;
+  align-self: end;
+}
+
+#depression {
+  grid-column: 1;
+  grid-row: 3;
+  text-align: right;
 }
 
 #relaxation {
-  top: 6vw;
-  left: 8vw;
-  font-size: 2vw;
+  grid-column: 3;
+  grid-row: 3;
 }
 
 #mapid {

@@ -3,13 +3,22 @@ var timeline = [];
 // Welcome
 var welcome = {
   type: "html-button-response",
-  stimulus: "Welcome to the experiment, press any key to continue.",
+  stimulus:
+    "Welcome to the MoodFoam, press the button below to begin the test.",
   choices: ["Start"]
 };
 
 timeline.push(welcome);
 
 // Introduction?
+var test_introduction = {
+  type: "html-button-response",
+  stimulus:
+    "This is an survey about how you perceive Tellus. There are no right or wrong answers and all information is anonymous.",
+  choices: ["Continue"]
+};
+
+timeline.push(test_introduction);
 
 // Who are you?
 var participant_types = ["Student", "Researcher", "Staff", "Visitor"];
@@ -104,7 +113,7 @@ timeline.push(test_space_fit);
 var test_affect_grid = {
   stimulus: "Please rate how you are feeling right now.",
   type: "affect-grid",
-  prompt: "Click the mouse in a cell.",
+  prompt: "Select the cell which best fits your mood.",
   choices: new Array(81 - 1 + 1).fill().map((d, i) => i + 1),
   show_labels: true,
   show_sub_labels: false
@@ -116,7 +125,7 @@ timeline.push(test_affect_grid);
 var test_likert_intro = {
   type: "html-button-response",
   stimulus: "How do you feel about the following statements?",
-  choices: ["Next"]
+  choices: ["Continue"]
 };
 
 timeline.push(test_likert_intro);
