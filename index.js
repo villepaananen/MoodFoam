@@ -20,6 +20,7 @@ app.post("/", async (request, response) => {
 
   if (IsValidJSONString(JSON.stringify(request.body))) {
     db.insert(text, values);
+    window.location.replace("/end.html");
   } else console.error("Not JSON:", request.body);
 });
 
