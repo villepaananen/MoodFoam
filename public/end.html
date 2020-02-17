@@ -9,13 +9,11 @@
         .btn-wrapper {
             display: block;
             margin: 0 auto;
-            height: 100vh;
             text-align: center;
         }
 
         .btn {
             padding: 6px 12px;
-            margin: 40vh auto;
             font-size: 14px;
             font-weight: 400;
             font-family: 'Open Sans', 'Arial', sans-serif;
@@ -31,14 +29,40 @@
             background-color: #fff;
             border-color: #ccc;
         }
+
+        .text-wrapper {
+            text-align: left;
+            font-family: 'Open Sans', 'Arial', sans-serif;
+            margin: 0 40px 0 40px;
+        }
+
+        .container {
+            display: table-cell;
+            height: 100vh;
+            margin: 0 auto;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
 <body>
-    <div class="btn-wrapper">
-        <button class="btn"
-            onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSfK8YOQiKPDnoid3_548JDPWQIsmxUgNBWXsrDV1iNnU_aOTA/viewform?usp=sf_link'">Get
-            your prize</button>
+    <div class="container">
+        <div class="text-wrapper">
+            <h3>
+                Thank you for participating in the MoodFoam survey. Please keep submitting more ***REMOVED*** until
+                8.3.2020.
+            </h3>
+            <p>
+                If you want to participate in the coffee ticket raffle, please click the button below. You will be
+                redirected to a separate Google Forms page. As such, your information isn't linked to your survey
+                ***REMOVED***.
+            </p>
+        </div>
+        <div class="btn-wrapper">
+            <button class="btn"
+                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSfK8YOQiKPDnoid3_548JDPWQIsmxUgNBWXsrDV1iNnU_aOTA/viewform?usp=sf_link'">Participate
+                in the raffle</button>
+        </div>
     </div>
 </body>
 

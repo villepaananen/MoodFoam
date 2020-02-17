@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("./database.js");
 const express = require("express");
 require("dotenv").config();
 
@@ -14,14 +14,16 @@ app.use(
 );
 
 // add the experiment response to the database
-app.post("/", async (request, response) => {
+app.post("/", async (req, res) => {
   const text = "INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)";
-  const values = [JSON.stringify(request.body), new Date()];
-
-  if (IsValidJSONString(JSON.stringify(request.body))) {
+  const values = [JSON.stringify(req.body)];
+  if (res.status == 200) {
+    console.log("Data sent successfully");
+  }
+  if (IsValidJSONString(JSON.stringify(req.body))) {
     db.insert(text, values);
     window.location.replace("/end.html");
-  } else console.error("Not JSON:", request.body);
+  } else console.error("Not JSON:", req.body);
 });
 
 function IsValidJSONString(str) {
