@@ -1,4 +1,9 @@
-const pgp = require("pg-promise")();
+const options = {
+  promiseLib: promise
+};
+
+const pgp = require("pg-promise")(options);
+
 const cn = process.env.DATABASE_URI;
 const db = pgp(cn);
 
