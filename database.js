@@ -2,12 +2,9 @@ const pgp = require("pg-promise")();
 const cn = process.env.DATABASE_URI;
 const db = pgp(cn);
 
-function saveResponse(req, res, next) {
-  const responseJSON = req.params.response;
-  console.log(responseJSON);
-  return false;
+function saveResponse(data) {
   db.none("INSERT INTO responses(response, timestamp) VALUES($1, $2)", [
-    responseJSON,
+    data,
     new Date()
   ])
     .then(() => {
@@ -17,8 +14,8 @@ function saveResponse(req, res, next) {
       });
     })
     .catch(err => {
-      return next(err);
+      return console.error(err);
     });
 }
 
-module.exports = saveResponse;
+module.exports = { saveResponse };

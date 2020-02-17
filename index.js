@@ -1,6 +1,6 @@
+require("dotenv").config();
 const db = require("./database.js");
 const express = require("express");
-require("dotenv").config();
 
 const port = process.env.PORT || 5500;
 
@@ -14,23 +14,10 @@ app.use(
 );
 
 // add the experiment response to the database
-app.post("/", async (req, res) => {
-  const text = "INSERT INTO responses(response, timestamp) VALUES($1, $2)";
-  const values = [JSON.stringify(req.body)];
+app.post("/", (req, res) => {
   if (res.status == 200) {
     console.log("Data sent successfully");
   }
-  if (IsValidJSONString(JSON.stringify(req.body))) {
-    db.insert(text, values);
-    window.location.replace("/end.html");
-  } else console.error("Not JSON:", req.body);
+  db.saveResponse(req.body);
+  res.redirect("end");
 });
-
-function IsValidJSONString(str) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-}

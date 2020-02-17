@@ -195,11 +195,11 @@ timeline.push(test_end);
 jsPsych.init({
   timeline: timeline,
   on_finish: function() {
-    saveData();
+    sendData(jsPsych.data.get().json());
   }
 });
 
-function saveData() {
+function sendData(data) {
   let xhr = new XMLHttpRequest();
   xhr.open("POST", "/");
   xhr.setRequestHeader("Content-Type", "application/json");
@@ -209,19 +209,6 @@ function saveData() {
       console.log(response.success);
     }
   };
-
-  let response = jsPsych.data.get().json();
-  if (IsValidJSONString(response)) {
-    xhr.send(response);
-    window.location.replace("/end.html");
-  } else console.error("Invalid response: ", response);
-}
-
-function IsValidJSONString(str) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
+  xhr.send(data);
+  window.location.replace("/end.html");
 }
