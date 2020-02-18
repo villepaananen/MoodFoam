@@ -11,7 +11,7 @@ var welcome = {
 timeline.push(welcome);
 
 // Introduction?
-/* var test_introduction = {
+var test_introduction = {
   type: "html-button-response",
   stimulus:
     "This is an survey about how you perceive Tellus. There are no right or wrong answers and all information is anonymous.",
@@ -190,7 +190,7 @@ var test_end = {
   choices: ["Submit"]
 };
 
-timeline.push(test_end); */
+timeline.push(test_end);
 
 jsPsych.init({
   timeline: timeline,

@@ -21,17 +21,4 @@ const cn = {
 
 const db = pgp(cn);
 
-function saveResponse(data) {
-  db.none("INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)", [
-    data,
-    new Date()
-  ])
-    .then(() => {
-      console.log("DB insert success");
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-module.exports = { saveResponse };
+module.exports = db;
