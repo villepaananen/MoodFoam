@@ -15,7 +15,15 @@ app.use(
 
 // add the experiment response to the database
 app.post("/", (req, res) => {
-  db.saveResponse(req.body);
-
-  res.redirect("end.html");
+  db.none("INSERT INTO responses(response, timestamp) VALUES($1, $2)", [
+    { trial: req.body },
+    new Date()
+  ])
+    .then(() => {
+      console.log("DB insert success");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  res.redirect("/end.html");
 });
