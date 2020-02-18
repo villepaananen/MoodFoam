@@ -208,6 +208,4 @@ async function sendData(data) {
     .then(response => response.json())
     .then(responseData => console.log("Success:", responseData))
     .catch(err => console.log("Error:", err));
-
-  //window.location.replace("/end.html");
 }
