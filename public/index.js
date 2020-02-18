@@ -11,7 +11,7 @@ var welcome = {
 timeline.push(welcome);
 
 // Introduction?
-var test_introduction = {
+/* var test_introduction = {
   type: "html-button-response",
   stimulus:
     "This is an survey about how you perceive Tellus. There are no right or wrong answers and all information is anonymous.",
@@ -190,7 +190,7 @@ var test_end = {
   choices: ["Submit"]
 };
 
-timeline.push(test_end);
+timeline.push(test_end); */
 
 jsPsych.init({
   timeline: timeline,
@@ -199,16 +199,17 @@ jsPsych.init({
   }
 });
 
-function sendData(data) {
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "/");
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onload = function() {
-    if (xhr.status == 200) {
-      let response = JSON.parse(xhr.responseText);
-      console.log(response.success);
-    }
-  };
-  xhr.send(data);
-  window.location.replace("/end.html");
+async function sendData(data) {
+  await fetch("/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(responseData => console.log("Success:", responseData))
+    .catch(err => console.log("Error:", err));
+
+  //window.location.replace("/end.html");
 }
