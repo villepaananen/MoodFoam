@@ -22,17 +22,27 @@ const cn = {
 const db = pgp(cn);
 
 function saveResponse(data) {
+  console.assert(IsJsonString(data));
   db.none("INSERT INTO responses(response, timestamp) VALUES($1, $2)", [
     data,
     new Date()
   ])
     .then(() => {
-      console.log("database.js", res.status);
-      res.status(200).send("DB insert success");
+      console.log("DB insert success");
     })
     .catch(err => {
-      return console.error(err);
+      console.log(err);
     });
+}
+
+function IsJsonString(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    console.error("Data not JSON:", str);
+    return false;
+  }
+  return true;
 }
 
 module.exports = { saveResponse };
