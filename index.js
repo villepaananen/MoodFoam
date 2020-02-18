@@ -17,5 +17,5 @@ app.use(
 app.post("/", (req, res) => {
   db.saveResponse(req.body);
 
-  res.redirect("end");
+  res.redirect("end.html");
 });
