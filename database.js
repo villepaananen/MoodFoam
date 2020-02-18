@@ -22,7 +22,6 @@ const cn = {
 const db = pgp(cn);
 
 function saveResponse(data) {
-  console.assert(IsJsonString(data));
   db.none("INSERT INTO ***REMOVED***(response, timestamp) VALUES($1, $2)", [
     data,
     new Date()
@@ -33,16 +32,6 @@ function saveResponse(data) {
     .catch(err => {
       console.log(err);
     });
-}
-
-function IsJsonString(str) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    console.error("Data not JSON:", str);
-    return false;
-  }
-  return true;
 }
 
 module.exports = { saveResponse };
