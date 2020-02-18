@@ -194,9 +194,7 @@ timeline.push(test_end); */
 
 jsPsych.init({
   timeline: timeline,
-  on_finish: function() {
-    sendData(jsPsych.data.get().json());
-  }
+  on_finish: () => sendData(jsPsych.data.get().json())
 });
 
 async function sendData(data) {
@@ -205,7 +203,7 @@ async function sendData(data) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(data)
+    body: data
   })
     .then(response => response.json())
     .then(responseData => console.log("Success:", responseData))
