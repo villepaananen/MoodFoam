@@ -7,8 +7,8 @@
 
 .grid-btn-container {
   display: grid;
-  grid-template-columns: repeat(9, 5vh);
-  grid-template-rows: repeat(9, 5vh);
+  grid-template-columns: repeat(9, 5vw);
+  grid-template-rows: repeat(9, 5vw);
   grid-column: 2;
   grid-row: 2;
   grid-gap: 0px;

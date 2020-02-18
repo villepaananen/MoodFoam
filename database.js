@@ -1,6 +1,24 @@
-const pgp = require("pg-promise")();
+const options = {
+  error: function(error, e) {
+    if (e.cn) {
+      // A connection-related error;
+      console.log("CN:", e.cn);
+      console.log("EVENT:", error.message);
+    }
+  }
+};
 
-const cn = process.env.DATABASE_URI;
+const pgp = require("pg-promise")(options);
+
+const cn = {
+  host: process.env.DATABASE_SERVER_NAME,
+  port: process.env.DATABASE_PORT,
+  database: process.env.DATABASE_NAME,
+  user: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  ssl: true
+};
+
 const db = pgp(cn);
 
 function saveResponse(data) {
@@ -9,10 +27,8 @@ function saveResponse(data) {
     new Date()
   ])
     .then(() => {
-      res.status(200).json({
-        status: "success",
-        message: "Inserted one response"
-      });
+      console.log("database.js", res.status);
+      res.status(200).send("DB insert success");
     })
     .catch(err => {
       return console.error(err);

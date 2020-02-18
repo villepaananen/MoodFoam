@@ -15,9 +15,9 @@ app.use(
 
 // add the experiment response to the database
 app.post("/", (req, res) => {
-  if (res.status == 200) {
+  db.saveResponse(req.body);
+  if (res.status === 200) {
     console.log("Data sent successfully");
   }
-  db.saveResponse(req.body);
   res.redirect("end");
 });
