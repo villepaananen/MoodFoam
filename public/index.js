@@ -190,8 +190,8 @@ var test_end = {
   choices: ["Submit"]
 };
 
-timeline.push(test_end); */
-
+timeline.push(test_end);
+ */
 jsPsych.init({
   timeline: timeline,
   on_finish: () => sendData(jsPsych.data.get().json())
