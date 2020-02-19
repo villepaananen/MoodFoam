@@ -9,7 +9,7 @@ var welcome = {
 };
 
 timeline.push(welcome);
-/
+
 // Introduction?
 var test_introduction = {
   type: "html-button-response",
@@ -191,7 +191,7 @@ var test_end = {
 };
 
 timeline.push(test_end);
- 
+
 jsPsych.init({
   timeline: timeline,
   on_finish: () => sendData(jsPsych.data.get().json())
