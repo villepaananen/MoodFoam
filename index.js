@@ -37,12 +37,11 @@ app.post("/", (req, res) => {
   ])
     .then(() => {
       console.log("DB insert success");
-      //res.send("Response sent successfully");
     })
     .catch(err => {
       console.log(err);
     });
-  //res.redirect(307, "end.html");
+  res.redirect(307, "end.html");
 });
 
 function getRandomNumber() {
