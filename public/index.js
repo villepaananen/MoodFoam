@@ -9,7 +9,7 @@ var welcome = {
 };
 
 timeline.push(welcome);
-
+/* 
 // Introduction?
 var test_introduction = {
   type: "html-button-response",
@@ -190,7 +190,7 @@ var test_end = {
   choices: ["Submit"]
 };
 
-timeline.push(test_end);
+timeline.push(test_end); */
 
 jsPsych.init({
   timeline: timeline,
@@ -205,7 +205,8 @@ async function sendData(data) {
     },
     body: data
   })
-    .then(response => response.json())
-    .then(responseData => console.log("Success:", responseData))
+    .then(response => {
+      if (response.redirected) window.location.replace(response.url);
+    })
     .catch(err => console.log("Error:", err));
 }

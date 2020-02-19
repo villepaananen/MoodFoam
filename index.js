@@ -16,7 +16,7 @@ app.use(
 // add the experiment response to the database
 app.post("/", (req, res) => {
   db.none("INSERT INTO responses(response, timestamp) VALUES($1, $2)", [
-    { trial: req.body },
+    { data: req.body },
     new Date()
   ])
     .then(() => {
@@ -25,5 +25,5 @@ app.post("/", (req, res) => {
     .catch(err => {
       console.log(err);
     });
-  res.redirect("/end.html");
+  res.redirect(307, "end.html");
 });
