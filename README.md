@@ -13,7 +13,7 @@ A survey tool for the browser to gather  contextual mood data from an architectu
 
 ## Author
 
-**Ville Paananen** - [Website](villepaananen.com)
+**Ville Paananen** - [Website](https://villepaananen.com)
 
 
 
