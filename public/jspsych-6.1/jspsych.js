@@ -2001,7 +2001,7 @@ jsPsych.pluginAPI = (function() {
   }
 
   module.getKeyboardResponse = function(parameters) {
-    //parameters are: callback_function, valid_***REMOVED***, rt_method, persist, audio_context, audio_context_start_time, allow_held_key?
+    //parameters are: callback_function, valid_responses, rt_method, persist, audio_context, audio_context_start_time, allow_held_key?
 
     parameters.rt_method = (typeof parameters.rt_method === 'undefined') ? 'performance' : parameters.rt_method;
     if (parameters.rt_method != 'performance' && parameters.rt_method != 'audio') {
@@ -2028,13 +2028,13 @@ jsPsych.pluginAPI = (function() {
       }
 
       var valid_response = false;
-      if (typeof parameters.valid_***REMOVED*** === 'undefined' || parameters.valid_***REMOVED*** == jsPsych.ALL_KEYS) {
+      if (typeof parameters.valid_responses === 'undefined' || parameters.valid_responses == jsPsych.ALL_KEYS) {
         valid_response = true;
       } else {
-        if(parameters.valid_***REMOVED*** != jsPsych.NO_KEYS){
-          for (var i = 0; i < parameters.valid_***REMOVED***.length; i++) {
-            if (typeof parameters.valid_***REMOVED***[i] == 'string') {
-              var kc = jsPsych.pluginAPI.convertKeyCharacterToKeyCode(parameters.valid_***REMOVED***[i]);
+        if(parameters.valid_responses != jsPsych.NO_KEYS){
+          for (var i = 0; i < parameters.valid_responses.length; i++) {
+            if (typeof parameters.valid_responses[i] == 'string') {
+              var kc = jsPsych.pluginAPI.convertKeyCharacterToKeyCode(parameters.valid_responses[i]);
               if (typeof kc !== 'undefined') {
                 if (e.keyCode == kc) {
                   valid_response = true;
@@ -2042,7 +2042,7 @@ jsPsych.pluginAPI = (function() {
               } else {
                 throw new Error('Invalid key string specified for getKeyboardResponse');
               }
-            } else if (e.keyCode == parameters.valid_***REMOVED***[i]) {
+            } else if (e.keyCode == parameters.valid_responses[i]) {
               valid_response = true;
             }
           }

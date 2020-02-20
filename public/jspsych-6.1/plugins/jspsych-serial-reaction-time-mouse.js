@@ -66,7 +66,7 @@ jsPsych.plugins["serial-reaction-time-mouse"] = (function() {
         default: null,
         description: 'If a positive number, the target will progressively change color at the start of the trial, with the transition lasting this many milliseconds.'
       },
-      allow_nontarget_***REMOVED***: {
+      allow_nontarget_responses: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name: 'Allow nontarget response',
         default: false,
@@ -110,7 +110,7 @@ jsPsych.plugins["serial-reaction-time-mouse"] = (function() {
 
 		function showTarget(){
       var resp_targets;
-      if(!trial.allow_nontarget_***REMOVED***){
+      if(!trial.allow_nontarget_responses){
         resp_targets = [display_element.querySelector('#jspsych-serial-reaction-time-stimulus-cell-'+trial.target[0]+'-'+trial.target[1])]
       } else {
         resp_targets = display_element.querySelectorAll('.jspsych-serial-reaction-time-stimulus-cell');
@@ -167,7 +167,7 @@ jsPsych.plugins["serial-reaction-time-mouse"] = (function() {
 
     };
 
-    // function to handle ***REMOVED*** by the subject
+    // function to handle responses by the subject
     function after_response(info) {
 
 			// only record first response

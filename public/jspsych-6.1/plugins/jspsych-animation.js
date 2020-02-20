@@ -1,5 +1,5 @@
 /**
- * jsPsych plugin for showing animations and recording keyboard ***REMOVED***
+ * jsPsych plugin for showing animations and recording keyboard responses
  * Josh de Leeuw
  *
  * documentation: docs.jspsych.org
@@ -63,7 +63,7 @@ jsPsych.plugins.animation = (function() {
     var reps = 0;
     var startTime = performance.now();
     var animation_sequence = [];
-    var ***REMOVED*** = [];
+    var responses = [];
     var current_stim = "";
 
     var animate_interval = setInterval(function() {
@@ -115,7 +115,7 @@ jsPsych.plugins.animation = (function() {
 
     var after_response = function(info) {
 
-      ***REMOVED***.push({
+      responses.push({
         key_press: info.key,
         rt: info.rt,
         stimulus: current_stim
@@ -131,7 +131,7 @@ jsPsych.plugins.animation = (function() {
     // the trial ends
     var response_listener = jsPsych.pluginAPI.getKeyboardResponse({
       callback_function: after_response,
-      valid_***REMOVED***: trial.choices,
+      valid_responses: trial.choices,
       rt_method: 'performance',
       persist: true,
       allow_held_key: false
@@ -143,7 +143,7 @@ jsPsych.plugins.animation = (function() {
 
       var trial_data = {
         "animation_sequence": JSON.stringify(animation_sequence),
-        "***REMOVED***": JSON.stringify(***REMOVED***)
+        "responses": JSON.stringify(responses)
       };
 
       jsPsych.finishTrial(trial_data);

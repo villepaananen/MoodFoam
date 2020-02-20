@@ -464,19 +464,19 @@ var trial_block7 = {
       // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
       // first find mean RT
       var bad_old = jsPsych.data.get().filter({iat_type: 'bad-old'}).filterCustom(function(x) { return x.rt < 10000 });
-      var mean_correct_***REMOVED***_bad_old = bad_old.filter({correct: true}).select('rt').mean();
+      var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
       var bad_young = jsPsych.data.get().filter({iat_type: 'bad-young'}).filterCustom(function(x) { return x.rt < 10000 });
-      var mean_correct_***REMOVED***_bad_young = bad_young.filter({correct: true}).select('rt').mean();
+      var mean_correct_responses_bad_young = bad_young.filter({correct: true}).select('rt').mean();
 
       // get overall sd
       var sd = bad_old.join(bad_young).filter({correct: true}).select('rt').sd();
 
-      var d = (mean_correct_***REMOVED***_bad_young - mean_correct_***REMOVED***_bad_old) / sd;
+      var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
 
       return "<p>You're done! Below is some information about how you performed.</p>"+
-        "<p>When the pairs were BAD/YOUNG and GOOD/OLD, it took you an average of <strong>"+Math.floor(mean_correct_***REMOVED***_bad_young)+"ms</strong> to respond.</p>"+
-        "<p>When the pairs were BAD/OLD and GOOD/YOUNG, it took you an average of <strong>"+Math.floor(mean_correct_***REMOVED***_bad_old)+"ms</strong> to respond.</p>"+
-        "<p>Your D score, an index of performance that takes into account this difference and the overall level of variability in your ***REMOVED***, is <strong>"+d.toFixed(2)+"</strong></p>"+
+        "<p>When the pairs were BAD/YOUNG and GOOD/OLD, it took you an average of <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> to respond.</p>"+
+        "<p>When the pairs were BAD/OLD and GOOD/YOUNG, it took you an average of <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> to respond.</p>"+
+        "<p>Your D score, an index of performance that takes into account this difference and the overall level of variability in your responses, is <strong>"+d.toFixed(2)+"</strong></p>"+
         "<p>For reference, the Project Implicit IAT website labels D scores above 0.15 as a slight bias, scores above 0.35 as a moderate bias, and scores above 0.65 a strong bias.</p>"
     }
   };

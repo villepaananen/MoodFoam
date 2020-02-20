@@ -30,7 +30,7 @@ app.post("/", (req, res) => {
   } else {
     console.log("Cookie exists", cookieid);
   }
-  db.none("INSERT INTO ***REMOVED***(response, timestamp, id) VALUES($1, $2, $3)", [
+  db.none("INSERT INTO responses(response, timestamp, id) VALUES($1, $2, $3)", [
     { data: req.body },
     new Date(),
     cookieid

@@ -142,7 +142,7 @@ jsPsych.plugins['survey-text'] = (function() {
       var endTime = performance.now();
       var response_time = endTime - startTime;
 
-      // create object to hold ***REMOVED***
+      // create object to hold responses
       var question_data = {};
       
       for(var index=0; index < trial.questions.length; index++){
@@ -160,7 +160,7 @@ jsPsych.plugins['survey-text'] = (function() {
       // save data
       var trialdata = {
         "rt": response_time,
-        "***REMOVED***": JSON.stringify(question_data)
+        "responses": JSON.stringify(question_data)
       };
 
       display_element.innerHTML = '';

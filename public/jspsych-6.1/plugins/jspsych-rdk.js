@@ -484,7 +484,7 @@ jsPsych.plugins["rdk"] = (function() {
 				//Create the keyboard listener to listen for subjects' key response
 				keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
 					callback_function: after_response, //Function to call once the subject presses a valid key
-					valid_***REMOVED***: trial.choices, //The keys that will be considered a valid response and cause the callback function to be called
+					valid_responses: trial.choices, //The keys that will be considered a valid response and cause the callback function to be called
 					rt_method: 'performance', //The type of method to record timing information. 
 					persist: false, //If set to false, keyboard listener will only trigger the first time a valid key is pressed. If set to true, it has to be explicitly cancelled by the cancelKeyboardResponse plugin API.
 					allow_held_key: false //Only register the key once, after this getKeyboardResponse function is called. (Check JsPsych docs for better info under 'jsPsych.pluginAPI.getKeyboardResponse').
@@ -1306,7 +1306,7 @@ jsPsych.plugins["rdk"] = (function() {
 			//frameRequestID saves a long integer that is the ID of this frame request. The ID is then used to terminate the request below.
 			var frameRequestID = window.requestAnimationFrame(animate);
 			
-			//Start to listen to subject's key ***REMOVED***
+			//Start to listen to subject's key responses
 			startKeyboardListener(); 
 									
 			//Delare a timestamp

@@ -197,7 +197,7 @@ jsPsych.plugins.instructions = (function() {
       // have to reinitialize this instead of letting it persist to prevent accidental skips of pages by holding down keys too long
       keyboard_listener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
-        valid_***REMOVED***: [trial.key_forward, trial.key_backward],
+        valid_responses: [trial.key_forward, trial.key_backward],
         rt_method: 'performance',
         persist: false,
         allow_held_key: false
@@ -220,7 +220,7 @@ jsPsych.plugins.instructions = (function() {
     if (trial.allow_keys) {
       var keyboard_listener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
-        valid_***REMOVED***: [trial.key_forward, trial.key_backward],
+        valid_responses: [trial.key_forward, trial.key_backward],
         rt_method: 'performance',
         persist: false
       });

@@ -183,7 +183,7 @@ jsPsych.plugins["categorize-animation"] = (function() {
 
     keyboard_listener = jsPsych.pluginAPI.getKeyboardResponse({
       callback_function: after_response,
-      valid_***REMOVED***: trial.choices,
+      valid_responses: trial.choices,
       rt_method: 'performance',
       persist: true,
       allow_held_key: false

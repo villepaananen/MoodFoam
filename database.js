@@ -9,16 +9,9 @@ const options = {
 };
 
 const pgp = require("pg-promise")(options);
+pgp.pg.defaults.ssl = true;
 
-const cn = {
-  host: process.env.DATABASE_SERVER_NAME,
-  port: process.env.DATABASE_PORT,
-  database: process.env.DATABASE_NAME,
-  user: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  ssl: true
-};
-
+const cn = process.env.DATABASE_URL;
 const db = pgp(cn);
 
 module.exports = db;

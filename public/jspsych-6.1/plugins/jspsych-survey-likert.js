@@ -143,7 +143,7 @@ jsPsych.plugins['survey-likert'] = (function() {
       var endTime = performance.now();
       var response_time = endTime - startTime;
 
-      // create object to hold ***REMOVED***
+      // create object to hold responses
       var question_data = {};
       var matches = display_element.querySelectorAll('#jspsych-survey-likert-form .jspsych-survey-likert-opts');
       for(var index = 0; index < matches.length; index++){
@@ -167,7 +167,7 @@ jsPsych.plugins['survey-likert'] = (function() {
       // save data
       var trial_data = {
         "rt": response_time,
-        "***REMOVED***": JSON.stringify(question_data),
+        "responses": JSON.stringify(question_data),
         "question_order": JSON.stringify(question_order)
       };
 

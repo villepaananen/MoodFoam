@@ -141,7 +141,7 @@ jsPsych.plugins["audio-button-response"] = (function() {
       button: null
     };
 
-    // function to handle ***REMOVED*** by the subject
+    // function to handle responses by the subject
     function after_response(choice) {
 
       // measure rt

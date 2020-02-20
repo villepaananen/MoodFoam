@@ -183,7 +183,7 @@
     var leftKeyCode = jsPsych.pluginAPI.convertKeyCharacterToKeyCode(trial.left_category_key);
     var rightKeyCode = jsPsych.pluginAPI.convertKeyCharacterToKeyCode(trial.right_category_key);
 
-    // function to handle ***REMOVED*** by the subject
+    // function to handle responses by the subject
     var after_response = function(info) {
       var wImg = document.getElementById("wrongImgContainer");
       // after a valid response, the stimulus will have the CSS class 'responded'
@@ -211,17 +211,17 @@
             if(trial.force_correct_key_press) {
               var keyListener = jsPsych.pluginAPI.getKeyboardResponse({
                 callback_function: end_trial,
-                valid_***REMOVED***: [trial.right_category_key]
+                valid_responses: [trial.right_category_key]
               });
             } else {
             var keyListener = jsPsych.pluginAPI.getKeyboardResponse({
               callback_function: end_trial,
-              valid_***REMOVED***: trial.key_to_move_forward
+              valid_responses: trial.key_to_move_forward
             });}
            } else if(trial.response_ends_trial && trial.display_feedback != true) {
             var keyListener = jsPsych.pluginAPI.getKeyboardResponse({
               callback_function: end_trial,
-              valid_***REMOVED***: [jsPsych.ALL_KEYS]
+              valid_responses: [jsPsych.ALL_KEYS]
             });
           } else if(!trial.response_ends_trial && trial.display_feedback != true) {
 
@@ -243,17 +243,17 @@
             if(trial.force_correct_key_press) {
               var keyListener = jsPsych.pluginAPI.getKeyboardResponse({
                 callback_function: end_trial,
-                valid_***REMOVED***: [trial.left_category_key]
+                valid_responses: [trial.left_category_key]
               });
             } else {
             var keyListener = jsPsych.pluginAPI.getKeyboardResponse({
               callback_function: end_trial,
-              valid_***REMOVED***: trial.key_to_move_forward
+              valid_responses: trial.key_to_move_forward
             });}
           } else if(trial.response_ends_trial && trial.display_feedback != true) {
             var keyListener = jsPsych.pluginAPI.getKeyboardResponse({
               callback_function: end_trial,
-              valid_***REMOVED***: [jsPsych.ALL_KEYS]
+              valid_responses: [jsPsych.ALL_KEYS]
             });
           } else if(!trial.response_ends_trial && trial.display_feedback != true) {
 
@@ -266,7 +266,7 @@
     if (trial.left_category_key != jsPsych.NO_KEYS && trial.right_category_key != jsPsych.NO_KEYS) {
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
-        valid_***REMOVED***: [trial.left_category_key, trial.right_category_key],
+        valid_responses: [trial.left_category_key, trial.right_category_key],
         rt_method: 'performance',
         persist: false,
         allow_held_key: false

@@ -138,7 +138,7 @@ jsPsych.plugins["serial-reaction-time"] = (function() {
 
 			keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
-        valid_***REMOVED***: flat_choices,
+        valid_responses: flat_choices,
         allow_held_key: false
       });
 
@@ -186,7 +186,7 @@ jsPsych.plugins["serial-reaction-time"] = (function() {
 
     };
 
-    // function to handle ***REMOVED*** by the subject
+    // function to handle responses by the subject
     function after_response(info) {
 
 			// only record first response

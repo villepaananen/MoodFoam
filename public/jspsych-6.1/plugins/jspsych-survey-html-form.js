@@ -79,7 +79,7 @@ jsPsych.plugins['survey-html-form'] = (function() {
       // save data
       var trialdata = {
         "rt": response_time,
-        "***REMOVED***": JSON.stringify(question_data)
+        "responses": JSON.stringify(question_data)
       };
 
       display_element.innerHTML = '';

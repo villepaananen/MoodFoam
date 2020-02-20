@@ -79,9 +79,9 @@ jsPsych.plugins['vsl-animate-occlusion'] = (function() {
 
   plugin.trial = function(display_element, trial) {
     
-    // variable to keep track of timing info and ***REMOVED***
+    // variable to keep track of timing info and responses
     var start_time = 0;
-    var ***REMOVED*** = [];
+    var responses = [];
 
     var directions = [
       [{
@@ -154,7 +154,7 @@ jsPsych.plugins['vsl-animate-occlusion'] = (function() {
 
     // add key listener
     var after_response = function(info) {
-      ***REMOVED***.push({
+      responses.push({
         key: info.key,
         stimulus: which_image - 1,
         rt: info.rt
@@ -163,7 +163,7 @@ jsPsych.plugins['vsl-animate-occlusion'] = (function() {
 
     key_listener = jsPsych.pluginAPI.getKeyboardResponse({
       callback_function: after_response,
-      valid_***REMOVED***: trial.choices,
+      valid_responses: trial.choices,
       rt_method: 'performance',
       persist: true,
       allow_held_key: false
@@ -185,7 +185,7 @@ jsPsych.plugins['vsl-animate-occlusion'] = (function() {
 
       var trial_data = {
         "stimuli": JSON.stringify(trial.stimuli),
-        "***REMOVED***": JSON.stringify(***REMOVED***)
+        "responses": JSON.stringify(responses)
       };
 
       jsPsych.finishTrial(trial_data);

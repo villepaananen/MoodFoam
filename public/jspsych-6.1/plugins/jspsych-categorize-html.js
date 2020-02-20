@@ -150,7 +150,7 @@ jsPsych.plugins['categorize-html'] = (function() {
 
     jsPsych.pluginAPI.getKeyboardResponse({
       callback_function: after_response,
-      valid_***REMOVED***: trial.choices,
+      valid_responses: trial.choices,
       rt_method: 'performance',
       persist: false,
       allow_held_key: false
@@ -195,7 +195,7 @@ jsPsych.plugins['categorize-html'] = (function() {
 
         jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: after_forced_response,
-          valid_***REMOVED***: [trial.key_answer],
+          valid_responses: [trial.key_answer],
           rt_method: 'performance',
           persist: false,
           allow_held_key: false

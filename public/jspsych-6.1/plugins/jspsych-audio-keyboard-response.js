@@ -130,7 +130,7 @@ jsPsych.plugins["audio-keyboard-response"] = (function() {
       jsPsych.finishTrial(trial_data);
     };
 
-    // function to handle ***REMOVED*** by the subject
+    // function to handle responses by the subject
     var after_response = function(info) {
 
       // only record the first response
@@ -155,7 +155,7 @@ jsPsych.plugins["audio-keyboard-response"] = (function() {
     if(context !== null) {
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
-        valid_***REMOVED***: trial.choices,
+        valid_responses: trial.choices,
         rt_method: 'audio',
         persist: false,
         allow_held_key: false,
@@ -165,7 +165,7 @@ jsPsych.plugins["audio-keyboard-response"] = (function() {
     } else {
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
-        valid_***REMOVED***: trial.choices,
+        valid_responses: trial.choices,
         rt_method: 'performance',
         persist: false,
         allow_held_key: false

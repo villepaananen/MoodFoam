@@ -146,7 +146,7 @@ jsPsych.plugins["affect-grid"] = (function() {
       }
     }
 
-    // function to handle ***REMOVED*** by the subject
+    // function to handle responses by the subject
     function after_response(choice) {
       // measure rt
       var end_time = performance.now();

@@ -82,10 +82,10 @@ jsPsych.plugins['reconstruction'] = (function() {
       draw(param);
     }
 
-    // listen for ***REMOVED***
+    // listen for responses
     var key_listener = jsPsych.pluginAPI.getKeyboardResponse({
       callback_function: after_response,
-      valid_***REMOVED***: [trial.key_increase, trial.key_decrease],
+      valid_responses: [trial.key_increase, trial.key_decrease],
       rt_method: 'performance',
       persist: true,
       allow_held_key: true
