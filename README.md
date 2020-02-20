@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Work in progress
-A survey tool to get contextual mood data from an architectural space. 
-=======
 # MoodFoam (Work In Progress)
 
 A survey tool for the browser to gather  contextual mood data from an architectural space. This is part of my Master's thesis, and it got an scholarship from Suomen Rakennustietosäätiö in December 2019. 
@@ -20,9 +16,3 @@ The survey is located in [moodfoam.com](https://moodfoam.com)
 ## Author
 
 **Ville Paananen** - [Website](https://villepaananen.com)
-
-
-
-
-
->>>>>>> 947bf8d1697a8fc5a1d77c2dc11c4e30a2a7b021
