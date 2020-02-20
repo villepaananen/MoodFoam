@@ -2,6 +2,8 @@
 
 A survey tool for the browser to gather  contextual mood data from an architectural space. This is part of my Master's thesis, and it got an scholarship from Suomen Rakennustietosäätiö in December 2019. 
 
+The survey is located in [moodfoam.com](https://moodfoam.com)
+
 ## Built With
 
 * [jsPsych](https://www.jspsych.org/) - The behavioral experiment framework for web browsers
