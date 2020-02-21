@@ -6,7 +6,7 @@ var cookieParser = require("cookie-parser");
 const port = process.env.PORT || 5500;
 
 const cookieoptions = {
-  expires: new Date(2020, 3, 8)
+  expires: new Date(2020, 3, 9)
 };
 
 const app = express();
@@ -25,7 +25,6 @@ app.post("/", (req, res) => {
   if (cookieid === undefined) {
     cookieid = getRandomNumber();
     res.cookie("id", cookieid, cookieoptions);
-    res.send("cookie set");
     console.log("Cookie created successfully", cookieid);
   } else {
     console.log("Cookie exists", cookieid);
