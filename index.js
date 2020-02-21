@@ -6,7 +6,7 @@ var cookieParser = require("cookie-parser");
 const port = process.env.PORT || 5500;
 
 const cookieoptions = {
-  maxAge: 1000 * 60 * 60 * 24 * 14
+  expires: new Date(2020, 3, 8)
 };
 
 const app = express();
