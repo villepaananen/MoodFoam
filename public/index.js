@@ -4,7 +4,7 @@ var timeline = [];
 var welcome = {
   type: "html-button-response",
   stimulus:
-    "Welcome to the MoodFoam, press the button below to begin the test.",
+    "Welcome to the MoodFoam, please press the button below to start the survey.",
   choices: ["Start"]
 };
 
@@ -14,7 +14,7 @@ timeline.push(welcome);
 var test_introduction = {
   type: "html-button-response",
   stimulus:
-    "This is an survey about how you perceive Tellus. There are no right or wrong answers and all information is anonymous.",
+    "This is an survey about your feelings and experiences in Tellus Café and cubes area. There are no right or wrong answers and all information is anonymous.",
   choices: ["Continue"]
 };
 
@@ -143,7 +143,7 @@ var test_sound_level = {
   type: "survey-likert",
   questions: [
     {
-      prompt: "The sound level doesn't bother me.",
+      prompt: "The sound level does not bother me.",
       labels: scale_2,
       required: true,
       name: "Sounds"
@@ -158,7 +158,7 @@ var test_smells = {
   type: "survey-likert",
   questions: [
     {
-      prompt: "There aren't any distracting smells.",
+      prompt: "There are no distracting smells.",
       labels: scale_2,
       required: true,
       name: "Smells"
